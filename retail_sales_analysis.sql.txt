@@ -1,0 +1,72 @@
+-- =====================================================
+-- Project 3 - Retail Sales Analytics
+-- Author: Aanu Olurin
+-- Description:
+-- SQL queries used to analyse retail sales data.
+-- =====================================================
+
+-- View all sales
+SELECT *
+FROM sales;
+
+-- Calculate revenue for each sale
+SELECT
+    Store,
+    Region,
+    Product,
+    Quantity,
+    Price,
+    Quantity * Price AS Revenue
+FROM sales;
+
+-- Total company revenue
+SELECT
+    SUM(Quantity * Price) AS Total_Revenue
+FROM sales;
+
+-- Average revenue per sale
+SELECT
+    AVG(Quantity * Price) AS Average_Revenue
+FROM sales;
+
+-- Highest individual sale
+SELECT
+    MAX(Quantity * Price) AS Highest_Sale
+FROM sales;
+
+-- Lowest individual sale
+SELECT
+    MIN(Quantity * Price) AS Lowest_Sale
+FROM sales;
+
+-- Revenue by Store
+SELECT
+    Store,
+    SUM(Quantity * Price) AS Total_Revenue
+FROM sales
+GROUP BY Store
+ORDER BY Total_Revenue DESC;
+
+-- Revenue by Product
+SELECT
+    Product,
+    SUM(Quantity * Price) AS Total_Revenue
+FROM sales
+GROUP BY Product
+ORDER BY Total_Revenue DESC;
+
+-- Revenue by Region
+SELECT
+    Region,
+    SUM(Quantity * Price) AS Total_Revenue
+FROM sales
+GROUP BY Region
+ORDER BY Total_Revenue DESC;
+
+-- Number of sales by Store
+SELECT
+    Store,
+    COUNT(*) AS Number_of_Sales
+FROM sales
+GROUP BY Store
+ORDER BY Number_of_Sales DESC;
